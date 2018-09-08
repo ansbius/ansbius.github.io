@@ -1,0 +1,140 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="xssor"><meta name="renderer" content="webkit"><meta name="copyright" content="xssor"><meta name="keywords" content="pray"><meta name="description" content="null"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>ansbius</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/favicon.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
+  "use strict";
+  // rel=preload support test
+  if( !w.loadCSS ){
+    w.loadCSS = function(){};
+  }
+  // define on the loadCSS obj
+  var rp = loadCSS.relpreload = {};
+  // rel=preload feature support test
+  // runs once and returns a function for compat purposes
+  rp.support = (function(){
+    var ret;
+    try {
+      ret = w.document.createElement( "link" ).relList.supports( "preload" );
+    } catch (e) {
+      ret = false;
+    }
+    return function(){
+      return ret;
+    };
+  })();
+
+  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+  // then change that media back to its intended value on load
+  rp.bindMediaToggle = function( link ){
+    // remember existing media attr for ultimate state, or default to 'all'
+    var finalMedia = link.media || "all";
+
+    function enableStylesheet(){
+      link.media = finalMedia;
+    }
+
+    // bind load handlers to enable media
+    if( link.addEventListener ){
+      link.addEventListener( "load", enableStylesheet );
+    } else if( link.attachEvent ){
+      link.attachEvent( "onload", enableStylesheet );
+    }
+
+    // Set rel and non-applicable media type to start an async request
+    // note: timeout allows this to happen async to let rendering continue in IE
+    setTimeout(function(){
+      link.rel = "stylesheet";
+      link.media = "only x";
+    });
+    // also enable media after 3 seconds,
+    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+    setTimeout( enableStylesheet, 3000 );
+  };
+
+  // loop through link elements in DOM
+  rp.poly = function(){
+    // double check this to prevent external calls from running
+    if( rp.support() ){
+      return;
+    }
+    var links = w.document.getElementsByTagName( "link" );
+    for( var i = 0; i < links.length; i++ ){
+      var link = links[ i ];
+      // qualify links to those with rel=preload and as=style attrs
+      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+        // prevent rerunning on link
+        link.setAttribute( "data-loadcss", true );
+        // bind listeners to toggle media back
+        rp.bindMediaToggle( link );
+      }
+    }
+  };
+
+  // if unsupported, run the polyfill
+  if( !rp.support() ){
+    // run once at least
+    rp.poly();
+
+    // rerun poly on an interval until onload
+    var run = w.setInterval( rp.poly, 500 );
+    if( w.addEventListener ){
+      w.addEventListener( "load", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    } else if( w.attachEvent ){
+      w.attachEvent( "onload", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    }
+  }
+
+
+  // commonjs
+  if( typeof exports !== "undefined" ){
+    exports.loadCSS = loadCSS;
+  }
+  else {
+    w.loadCSS = loadCSS;
+  }
+}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/1.png"></div><!--.profile-saying
+  i.fa.fa-comment
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">ansbius</div><div class="profile-signature">ansbius</div><div class="friends"><div>FRIENDS</div><span><a href="https://landgrey.me/" target="_black">landgrey</a></span><span><a href="https://im1gd.me/" target="_black">im1gd</a></span></div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(/img/intro/index-bg.png);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">ansbius</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div></i><div class="clear"></div></section></nav><h1>ansbius</h1><h5>Welcome to my Blog!</h5><div class="intro-social"><a class="fa fa-github" href="https://github.com/ansbius" target="_blank" title="github"></a></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><section id="recent-posts"><div class="recent-post-item"><div class="post-title"><a href="/2017/04/27/SQL注入测试用例/">SQL注入测试用例</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2017-04-27T11:54:27.000Z">2017-04-27</time></div><div class="recent-post-content">0x00数字型注入
+1234567891011'1+1 3-1value + 01 or 1=1 1) or (1=1value or 1=2 value) or (1=11 and 1=2 1) and (1=21 or 'ab'='a'+'b' 1) or ('ab'='a'+'b'1 or 'ab'='a''b' 1) or ('ab'='a''b'1 or 'ab'='a'||'b' 1) or ('ab'='a'||'b'1 and 1=2 UNION SELECT 1,load_file('/etc/passwd'),3,4,5,6,7,81 and 1=2 union selec ...</div><div class="recent-post-tags"><a class="post-tag fa fa-tag" href="javascript:void(0)" date-tags="SQL"> SQL</a></div><div class="read-more"><a class="more" href="/2017/04/27/SQL注入测试用例/#more">ReadMore</a></div><hr></div><div class="recent-post-item"><div class="post-title"><a href="/2017/04/27/XSS测试用例/">XSS测试用例</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2017-04-27T11:54:27.000Z">2017-04-27</time></div><div class="recent-post-content">0x00alert confirm prompt
+0x01
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105&lt;script&gt;alert(1);&lt;/script&gt;&lt;script&gt;alert('XSS' ...</div><div class="recent-post-tags"><a class="post-tag fa fa-tag" href="javascript:void(0)" date-tags="XSS"> XSS</a></div><div class="read-more"><a class="more" href="/2017/04/27/XSS测试用例/#more">ReadMore</a></div><hr></div><div class="recent-post-item"><div class="post-title"><a href="/2017/04/27/利用drozer进行Android渗透测试/">利用drozer进行Android渗透测试</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2017-04-27T11:54:27.000Z">2017-04-27</time></div><div class="recent-post-content">0x00安装与启动
+
+安装第一步：从http://mwr.to/drozer下载Drozer (Windows Installer)第二步：在Android设备中安装agent.apk
+
+1#adb install agent.apk
+
+启动第一步：在PC上使用adb进行端口转发，转发到Drozer使用的端口31415
+
+1#adb forward tcp:31415 tcp:31415
+第二步：在Android设备上开启Drozer Agent选择embedded server-enable第三步：在PC上开启Drozer console
+1#drozer console connect
+0 ...</div><div class="recent-post-tags"><a class="post-tag fa fa-tag" href="javascript:void(0)" date-tags="drozer"> drozer</a><a class="post-tag fa fa-tag" href="javascript:void(0)" date-tags="android app"> android app</a></div><div class="read-more"><a class="more" href="/2017/04/27/利用drozer进行Android渗透测试/#more">ReadMore</a></div><hr></div><div class="recent-post-item"><div class="post-title"><a href="/2017/04/25/win10与虚拟机中的linux共享文件方法/">win10与虚拟机中的linux共享文件方法</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2017-04-25T11:54:27.000Z">2017-04-25</time></div><div class="recent-post-content">0x00
+打开虚拟机中的linux系统;然后选择虚拟机菜单上的”虚拟机”选项中的”安装VMware Tools.
+0x01
+在任意位置,新建一个目录 /tmp/cdrom, 用于挂载虚拟光驱(cd):
+1# mkdir /tmp/cdrom
+0x02
+将目录 /mnt/cdrom挂载在虚拟光驱 /dev/cdrom:
+1# mount /dev/cdrom /tmp/cdrom
+0x03
+再在根目录中新建一目录:
+1# mkdir /tmp/tmp
+0x04
+将挂载在虚拟光驱中的目录的 /mnt/cdrom 中的VMwareTools-9.6.1-1378637.tar.gz 文件拷贝到/ro ...</div><div class="recent-post-tags"><a class="post-tag fa fa-tag" href="javascript:void(0)" date-tags="win10"> win10</a><a class="post-tag fa fa-tag" href="javascript:void(0)" date-tags="linux"> linux</a></div><div class="read-more"><a class="more" href="/2017/04/25/win10与虚拟机中的linux共享文件方法/#more">ReadMore</a></div><hr></div><div class="recent-post-item"><div class="post-title"><a href="/2017/04/24/IP段和常见端口/">IP段和常见端口</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2017-04-24T11:54:27.000Z">2017-04-24</time></div><div class="recent-post-content">0x00
+IP段IP地址根据网络号和主机号的数量而分为A、B、C三类。A类地址通常为大型网络而提供，全世界总共只有126个只可能的A类网络，每个A类网络最多可以连接16777214台主机。B类地址适用于中等规模的网络，全世界大约有16000个B类网络，每个B类网络最多可以连接65534台主机。C类地址适用于校园网等小型网络，每个C类网络最多可以有254台主机。1.A类地址（1）A类地址第1字节为网络地址，其它3个字节为主机地址。（2）A类地址范围：1.0.0.1—126.255.255.254（3）A类地址中的私有地址和保留地址：① 10.X.X.X是私有地址（所谓的私有地址就是在互联网上不使 ...</div><div class="recent-post-tags"><a class="post-tag fa fa-tag" href="javascript:void(0)" date-tags="IP"> IP</a><a class="post-tag fa fa-tag" href="javascript:void(0)" date-tags="PORT"> PORT</a></div><div class="read-more"><a class="more" href="/2017/04/24/IP段和常见端口/#more">ReadMore</a></div><hr></div><div class="recent-post-item"><div class="post-title"><a href="/2017/04/23/SMS Sniffer/">SMS Sniffer</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2017-04-23T11:54:27.000Z">2017-04-23</time></div><div class="recent-post-content">0x00连接线与TTL的接法黑/黄:GND红:TX白:RX安装依赖包
+1#sudo apt-get -y install libtool shtool autoconf git-core pkg-config make gcc
+0x01安装libosmocore源码包
+12345# cd /opt# git clone git://git.osmocom.org/libosmocore.git# cd libosmocore/ $ autoreconf -i $ ./configure# make $ sudo make install$ ldconfig# cd ..
+0x02安装交叉编译环 ...</div><div class="recent-post-tags"><a class="post-tag fa fa-tag" href="javascript:void(0)" date-tags="2G - GSM - moto c118"> 2G - GSM - moto c118</a></div><div class="read-more"><a class="more" href="/2017/04/23/SMS Sniffer/#more">ReadMore</a></div><hr></div><div class="recent-post-item"><div class="post-title"><a href="/2017/04/22/无线审计/">无线审计</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2017-04-22T11:54:27.000Z">2017-04-22</time></div><div class="recent-post-content">0x00
+1#iwconfig
+mode:Managed改为监听模式
+12345#ifconfig wlan0 down#iwconfig wlan0 mode monitor#ifconfig wlan0 up#iwconfig#airmon-ng check kill
+0x01
+1#airmon-ng start wlan0
+(monitor mode enabled on mon0)用它抓包
+1#airodump-ng wlan0mon
+CH：频道 BSSID：路由器MAC地址 接下来抓包
+1#airodump-ng -c 11 -w test –bssid(路由器MAC) wlan0m ...</div><div class="recent-post-tags"><a class="post-tag fa fa-tag" href="javascript:void(0)" date-tags="WiFi - 无线安全"> WiFi - 无线安全</a></div><div class="read-more"><a class="more" href="/2017/04/22/无线审计/#more">ReadMore</a></div><hr></div></section><nav class="cxo-page-nav"><span class="page-number current">1</span></nav></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span></div></footer><!-- catelog--><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i></body></html>
