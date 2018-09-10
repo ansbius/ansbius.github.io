@@ -1,0 +1,108 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="xssor"><meta name="renderer" content="webkit"><meta name="copyright" content="xssor"><meta name="keywords" content="pray"><meta name="description" content="null"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>IP段和常见端口 · ansbius</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/favicon.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
+  "use strict";
+  // rel=preload support test
+  if( !w.loadCSS ){
+    w.loadCSS = function(){};
+  }
+  // define on the loadCSS obj
+  var rp = loadCSS.relpreload = {};
+  // rel=preload feature support test
+  // runs once and returns a function for compat purposes
+  rp.support = (function(){
+    var ret;
+    try {
+      ret = w.document.createElement( "link" ).relList.supports( "preload" );
+    } catch (e) {
+      ret = false;
+    }
+    return function(){
+      return ret;
+    };
+  })();
+
+  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+  // then change that media back to its intended value on load
+  rp.bindMediaToggle = function( link ){
+    // remember existing media attr for ultimate state, or default to 'all'
+    var finalMedia = link.media || "all";
+
+    function enableStylesheet(){
+      link.media = finalMedia;
+    }
+
+    // bind load handlers to enable media
+    if( link.addEventListener ){
+      link.addEventListener( "load", enableStylesheet );
+    } else if( link.attachEvent ){
+      link.attachEvent( "onload", enableStylesheet );
+    }
+
+    // Set rel and non-applicable media type to start an async request
+    // note: timeout allows this to happen async to let rendering continue in IE
+    setTimeout(function(){
+      link.rel = "stylesheet";
+      link.media = "only x";
+    });
+    // also enable media after 3 seconds,
+    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+    setTimeout( enableStylesheet, 3000 );
+  };
+
+  // loop through link elements in DOM
+  rp.poly = function(){
+    // double check this to prevent external calls from running
+    if( rp.support() ){
+      return;
+    }
+    var links = w.document.getElementsByTagName( "link" );
+    for( var i = 0; i < links.length; i++ ){
+      var link = links[ i ];
+      // qualify links to those with rel=preload and as=style attrs
+      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+        // prevent rerunning on link
+        link.setAttribute( "data-loadcss", true );
+        // bind listeners to toggle media back
+        rp.bindMediaToggle( link );
+      }
+    }
+  };
+
+  // if unsupported, run the polyfill
+  if( !rp.support() ){
+    // run once at least
+    rp.poly();
+
+    // rerun poly on an interval until onload
+    var run = w.setInterval( rp.poly, 500 );
+    if( w.addEventListener ){
+      w.addEventListener( "load", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    } else if( w.attachEvent ){
+      w.attachEvent( "onload", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    }
+  }
+
+
+  // commonjs
+  if( typeof exports !== "undefined" ){
+    exports.loadCSS = loadCSS;
+  }
+  else {
+    w.loadCSS = loadCSS;
+  }
+}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/1.png"></div><!--.profile-saying
+  i.fa.fa-comment
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">ansbius</div><div class="profile-signature">ansbius</div><div class="friends"><div>FRIENDS</div><span><a href="https://landgrey.me/" target="_black">landgrey</a></span><span><a href="https://im1gd.me/" target="_black">im1gd</a></span></div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(/img/intro/index-bg.png);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">ansbius</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div></i><div class="clear"></div></section></nav><h1 class="post-title">IP段和常见端口</h1><div class="post-intros"><div class="post-intro-meta"><span class="post-intro-time"><i class="post-intro-calendar fa fa-calendar"></i><span>2017/04/24</span></span><span class="busuanzi-pv" id="busuanzi_container_page_pv"><i class="post-intro-calendar fa fa-user-o"></i><span id="busuanzi_value_page_pv"></span></span><span class="post-intro-tags"><a class="intro-tag fa fa-tag" href="javascript:void(0)" date-tags="IP"> IP</a><a class="intro-tag fa fa-tag" href="javascript:void(0)" date-tags="PORT"> PORT</a></span></div></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><article class="article-entry" id="post"><p><strong>0x00</strong></p>
+<p>IP段<br>IP地址根据网络号和主机号的数量而分为A、B、C三类。A类地址通常为大型网络而提供，全世界总共只有126个只可能的A类网络，每个A类网络最多可以连接16777214台主机。B类地址适用于中等规模的网络，全世界大约有16000个B类网络，每个B类网络最多可以连接65534台主机。C类地址适用于校园网等小型网络，每个C类网络最多可以有254台主机。<br>1.A类地址<br>（1）A类地址第1字节为网络地址，其它3个字节为主机地址。<br>（2）A类地址范围：1.0.0.1—126.255.255.254<br>（3）A类地址中的私有地址和保留地址：① 10.X.X.X是私有地址（所谓的私有地址就是在互联网上不使用，而被用在局域网络中的地址）。<br>范围（10.0.0.0-10.255.255.255）② 127.X.X.X是保留地址，用做循环测试用的。<br>2.B类地址<br>（1）B类地址第1字节和第2字节为网络地址，其它2个字节为主机地址。<br>（2）B类地址范围：128.0.0.1—191.255.255.254。<br>（3）B类地址的私有地址和保留地址：①172.16.0.0—172.31.255.255是私有地址② 169.254.X.X是保留地址。如果你的IP地址是自动获取IP地址，而你在网络上又没有找到可用的DHCP服务器。就会得到其中一个IP。<br>3.C类地址<br>（1）C类地址第1字节、第2字节和第3个字节为网络地址，第4个字节为主机地址。另外第1个字节的前三位固定为110。<br>（2）C类地址范围：192.0.0.1—223.255.255.254。<br>（3）C类地址中的私有地址：192.168.X.X是私有地址。(192.168.0.0-192.168.255.255)<br>4.D类地址<br>（1）D类地址不分网络地址和主机地址，它的第1个字节的前四位固定为1110。<br>（2）D类地址范围：224.0.0.1—239.255.255.254<br>5.E类地址<br>（1）E类地址不分网络地址和主机地址，它的第1个字节的前五位固定为11110。<br>（2）E类地址范围：240.0.0.1—255.255.255.254</p>
+<p><strong>0x01</strong></p>
+<p>常见端口<br>端口可分为虚拟端口和物理端口，其中虚拟端口指计算机内部或交换机路由器内的端口，不可见。例如计算机中的80端口、21端口、23端口等。物理端口又称为接口，是可见端口，计算机背板的RJ45网口，交换机路由器集线器等RJ45端口。电话使用RJ11插口也属于物理端口的范畴。</p>
+<p>TCP端口</p>
+<p>7 = 回显<br>9 = 丢弃<br>11 = 在线用户<br>13 = 时间服务<br>15 = 网络状态<br>17 = 每日引用<br>18 = 消息发送<br>19 = 字符发生器<br>20 = ftp数据<br>21 = 文件传输<br>22 = SSH端口<br>23 = 远程终端<br>25 = 发送邮件<br>31 = Masters Paradise木马<br>37 = 时间<br>39 = 资源定位协议<br>41 = DeepThroat木马<br>42 = WINS 主机名服务<br>43 = WhoIs服务<br>58 = DMSetup木马<br>59 = 个人文件服务<br>63 = WHOIS端口<br>69 = TFTP服务<br>70 = 信息检索<br>79 = 查询在线用户<br>80 = WEB网页<br>88 = Kerberros5认证<br>101 = 主机名<br>102 = ISO<br>107 = 远程登录终端<br>109 = pop2邮件<br>110 = pop3邮件<br>111 = SUN远程控制<br>113 = 身份验证<br>117 = UUPC<br>119 = nntp新闻组<br>121 = JammerKillah木马<br>135 = 本地服务<br>138 = 隐形大盗<br>139 = 文件共享<br>143 = IMAP4邮件<br>146 = FC-Infector木马<br>158 = 邮件服务<br>170 = 打印服务<br>179 = BGP<br>194 = IRC PORT<br>213 = TCP OVER IPX<br>220 = IMAP3邮件<br>389 = 目录服务<br>406 = IMSP PORT<br>411 = DC++<br>421 = TCP Wrappers<br>443 = 安全WEB访问<br>445 = SMB(交换服务器消息块)<br>456 = Hackers Paradise木马<br>464 = Kerberros认证<br>512 = 远程执行或卫星通讯<br>513 = 远程登录与查询<br>514 = SHELL/系统日志<br>515 = 打印服务<br>517 = Talk<br>518 = 网络聊天<br>520 = EFS<br>525 = 时间服务<br>526 = 日期更新<br>530 = RPC<br>531 = RASmin木马<br>532 = 新闻阅读<br>533 = 紧急广播<br>540 = UUCP<br>543 = Kerberos登录<br>544 = 远程shell<br>550 = who<br>554 = RTSP<br>555 = Ini-Killer木马<br>556 = 远程文件系统<br>560 = 远程监控<br>561 = 监控<br>636 = 安全目录服务<br>666 = Attack FTP木马<br>749 = Kerberos管理<br>750 = Kerberos V4<br>911 = Dark Shadow木马<br>989 = FTPS<br>990 = FTPS<br>992 = TelnetS<br>993 = IMAPS<br>999 = DeepThroat木马<br>1001 = Silencer木马<br>1010 = Doly木马<br>1011 = Doly木马<br>1012 = Doly木马<br>1015 = Doly木马<br>1024 = NetSpy木马<br>1042 = Bla木马<br>1045 = RASmin木马<br>1080 = SOCKS代理<br>1090 = Extreme木马<br>1095 = Rat木马<br>1097 = Rat木马<br>1098 = Rat木马<br>1099 = Rat木马<br>1109 = Kerberos POP<br>1167 = 私用电话<br>1170 = Psyber Stream Server<br>1214 = KAZAA下载<br>1234 = Ultors/恶鹰木马<br>1243 = Backdoor/SubSeven木马<br>1245 = VooDoo Doll木马<br>1349 = BO DLL木马<br>1352 = Lotus Notes<br>1433 = SQL SERVER<br>1492 = FTP99CMP木马<br>1494 = CITRIX<br>1503 = Netmeeting<br>1512 = WINS解析<br>1524 = IngresLock后门<br>1600 = Shivka-Burka木马<br>1630 = 网易泡泡<br>1701 = L2TP<br>1720 = H323<br>1723 = PPTP(虚拟专用网)<br>1731 = Netmeeting<br>1755 = 流媒体服务<br>1807 = SpySender木马<br>1812 = Radius认证<br>1813 = Radius评估<br>1863 = MSN聊天<br>1981 = ShockRave木马<br>1999 = Backdoor木马<br>2000 = TransScout-Remote-Explorer木马<br>2001 = TransScout木马<br>2002 = TransScout/恶鹰木马<br>2003 = TransScout木马<br>2004 = TransScout木马<br>2005 = TransScout木马<br>2023 = Ripper木马<br>2049 = NFS服务器<br>2053 = KNETD<br>2115 = Bugs木马<br>2140 = Deep Throat木马<br>2401 = CVS<br>2535 = 恶鹰<br>2565 = Striker木马<br>2583 = WinCrash木马<br>2773 = Backdoor/SubSeven木马<br>2774 = SubSeven木马<br>2801 = Phineas Phucker木马<br>2869 = UPNP(通用即插即用)<br>3024 = WinCrash木马<br>3050 = InterBase<br>3128 = squid代理<br>3129 = Masters Paradise木马<br>3150 = DeepThroat木马<br>3306 = MYSQL<br>3389 = 远程桌面<br>3544 = MSN语音<br>3545 = MSN语音<br>3546 = MSN语音<br>3547 = MSN语音<br>3548 = MSN语音<br>3549 = MSN语音<br>3550 = MSN语音<br>3551 = MSN语音<br>3552 = MSN语音<br>3553 = MSN语音<br>3554 = MSN语音<br>3555 = MSN语音<br>3556 = MSN语音<br>3557 = MSN语音<br>3558 = MSN语音<br>3559 = MSN语音<br>3560 = MSN语音<br>3561 = MSN语音<br>3562 = MSN语音<br>3563 = MSN语音<br>3564 = MSN语音<br>3565 = MSN语音<br>3566 = MSN语音<br>3567 = MSN语音<br>3568 = MSN语音<br>3569 = MSN语音<br>3570 = MSN语音<br>3571 = MSN语音<br>3572 = MSN语音<br>3573 = MSN语音<br>3574 = MSN语音<br>3575 = MSN语音<br>3576 = MSN语音<br>3577 = MSN语音<br>3578 = MSN语音<br>3579 = MSN语音<br>3700 = Portal of Doom木马<br>4080 = WebAdmin<br>4081 = WebAdmin+SSL<br>4092 = WinCrash木马<br>4267 = SubSeven木马<br>4443 = AOL MSN<br>4567 = File Nail木马<br>4590 = ICQ木马<br>4661 = 电驴下载<br>4662 = 电驴下载<br>4663 = 电驴下载<br>4664 = 电驴下载<br>4665 = 电驴下载<br>4666 = 电驴下载<br>4899 = Radmin木马<br>5000 = Sokets-de木马<br>5000 = UPnP(通用即插即用)<br>5001 = Back Door Setup木马<br>5060 = SIP<br>5168 = 高波蠕虫<br>5190 = AOL MSN<br>5321 = Firehotcker木马<br>5333 = NetMonitor木马<br>5400 = Blade Runner木马<br>5401 = Blade Runner木马<br>5402 = Blade Runner木马<br>5550 = JAPAN xtcp木马<br>5554 = 假警察蠕虫<br>5555 = ServeMe木马<br>5556 = BO Facil木马<br>5557 = BO Facil木马<br>5569 = Robo-Hack木马<br>5631 = pcAnywhere<br>5632 = pcAnywhere<br>5742 = WinCrash木马<br>5800 = VNC端口<br>5801 = VNC端口<br>5890 = VNC端口<br>5891 = VNC端口<br>5892 = VNC端口<br>6267 = 广外女生<br>6400 = The Thing木马<br>6665 = IRC<br>6666 = IRC SERVER PORT<br>6667 = 小邮差<br>6668 = IRC<br>6669 = IRC<br>6670 = DeepThroat木马<br>6711 = SubSeven木马<br>6771 = DeepThroat木马<br>6776 = BackDoor-G木马<br>6881 = BT下载<br>6882 = BT下载<br>6883 = BT下载<br>6884 = BT下载<br>6885 = BT下载<br>6886 = BT下载<br>6887 = BT下载<br>6888 = BT下载<br>6889 = BT下载<br>6890 = BT下载<br>6939 = Indoctrination木马<br>6969 = GateCrasher/Priority木马<br>6970 = GateCrasher木马<br>7000 = Remote Grab木马<br>7001 = Windows messager<br>7070 = RealAudio控制口<br>7215 = Backdoor/SubSeven木马<br>7300 = 网络精灵木马<br>7301 = 网络精灵木马<br>7306 = 网络精灵木马<br>7307 = 网络精灵木马<br>7308 = 网络精灵木马<br>7424 = Host Control Trojan<br>7467 = Padobot<br>7511 = 聪明基因<br>7597 = QaZ木马<br>7626 = 冰河木马<br>7789 = Back Door Setup/ICKiller木马<br>8011 = 无赖小子<br>8102 = 网络神偷<br>8181 = 灾飞<br>9408 = 山泉木马<br>9535 = 远程管理<br>9872 = Portal of Doom木马<br>9873 = Portal of Doom木马<br>9874 = Portal of Doom木马<br>9875 = Portal of Doom木马<br>9898 = 假警察蠕虫<br>9989 = iNi-Killer木马<br>10066 = Ambush Trojan<br>10067 = Portal of Doom木马<br>10167 = Portal of Doom木马<br>10168 = 恶邮差<br>10520 = Acid Shivers木马<br>10607 = COMA木马<br>11000 = Senna Spy木马<br>11223 = Progenic木马<br>11927 = Win32.Randin<br>12076 = GJammer木马<br>12223 = Keylogger木马<br>12345 = NetBus木马<br>12346 = GabanBus木马<br>12361 = Whack-a-mole木马<br>12362 = Whack-a-mole木马<br>12363 = Whack-a-Mole木马<br>12631 = WhackJob木马<br>13000 = Senna Spy木马<br>13223 = PowWow聊天<br>14500 = PC Invader木马<br>14501 = PC Invader木马<br>14502 = PC Invader木马<br>14503 = PC Invader木马<br>15000 = NetDemon木马<br>15382 = SubZero木马<br>16484 = Mosucker木马<br>16772 = ICQ Revenge木马<br>16969 = Priority木马<br>17072 = Conducent广告<br>17166 = Mosaic木马<br>17300 = Kuang2 the virus Trojan<br>17449 = Kid Terror Trojan<br>17499 = CrazzyNet Trojan<br>17500 = CrazzyNet Trojan<br>17569 = Infector Trojan<br>17593 = Audiodoor Trojan<br>17777 = Nephron Trojan<br>19191 = 蓝色火焰<br>19864 = ICQ Revenge木马<br>20001 = Millennium木马<br>20002 = Acidkor Trojan<br>20005 = Mosucker木马<br>20023 = VP Killer Trojan<br>20034 = NetBus 2 Pro木马<br>20808 = QQ女友<br>21544 = GirlFriend木马<br>22222 = Proziack木马<br>23005 = NetTrash木马<br>23006 = NetTrash木马<br>23023 = Logged木马<br>23032 = Amanda木马<br>23432 = Asylum木马<br>23444 = 网络公牛<br>23456 = Evil FTP木马<br>23456 = EvilFTP-UglyFTP木马<br>23476 = Donald-Dick木马<br>23477 = Donald-Dick木马<br>25685 = Moonpie木马<br>25686 = Moonpie木马<br>25836 = Trojan-Proxy<br>25982 = Moonpie木马<br>26274 = Delta Source木马<br>27184 = Alvgus 2000 Trojan<br>29104 = NetTrojan木马<br>29891 = The Unexplained木马<br>30001 = ErrOr32木马<br>30003 = Lamers Death木马<br>30029 = AOL木马<br>30100 = NetSphere木马<br>30101 = NetSphere木马<br>30102 = NetSphere木马<br>30103 = NetSphere 木马<br>30103 = NetSphere木马<br>30133 = NetSphere木马<br>30303 = Sockets de Troie<br>30947 = Intruse木马<br>31336 = Butt Funnel木马<br>31337 = Back-Orifice木马<br>31338 = NetSpy DK 木马<br>31339 = NetSpy DK 木马<br>31666 = BOWhack木马<br>31785 = Hack Attack木马<br>31787 = Hack Attack木马<br>31788 = Hack-A-Tack木马<br>31789 = Hack Attack木马<br>31791 = Hack Attack木马<br>31792 = Hack-A-Tack木马<br>32100 = Peanut Brittle木马<br>32418 = Acid Battery木马<br>33333 = Prosiak木马<br>33577 = Son of PsychWard木马<br>33777 = Son of PsychWard木马<br>33911 = Spirit 2000/2001木马<br>34324 = Big Gluck木马<br>34555 = Trinoo木马<br>35555 = Trinoo木马<br>36549 = Trojan-Proxy<br>37237 = Mantis Trojan<br>40412 = The Spy木马<br>40421 = Agent 40421木马<br>40422 = Master-Paradise木马<br>40423 = Master-Paradise木马<br>40425 = Master-Paradise木马<br>40426 = Master-Paradise木马<br>41337 = Storm木马<br>41666 = Remote Boot tool木马<br>46147 = Backdoor.sdBot<br>47262 = Delta Source木马<br>49301 = Online KeyLogger木马<br>50130 = Enterprise木马<br>50505 = Sockets de Troie木马<br>50766 = Fore木马<br>51996 = Cafeini木马<br>53001 = Remote Windows Shutdown木马<br>54283 = Backdoor/SubSeven木马<br>54320 = Back-Orifice木马<br>54321 = Back-Orifice木马<br>55165 = File Manager木马<br>57341 = NetRaider木马<br>58339 = Butt Funnel木马<br>60000 = DeepThroat木马<br>60411 = Connection木马<br>61348 = Bunker-hill木马<br>61466 = Telecommando木马<br>61603 = Bunker-hill木马<br>63485 = Bunker-hill木马<br>65000 = Devil木马<br>65390 = Eclypse木马<br>65432 = The Traitor木马<br>65535 = Rc1木马</p>
+<p>UDP端口</p>
+<p>31 = Masters Paradise木马<br>41 = DeepThroat木马<br>53 = 域名解析<br>67 = 动态IP服务<br>68 = 动态IP客户端<br>135 = 本地服务<br>137 = NETBIOS名称<br>138 = NETBIOS DGM服务<br>139 = 文件共享<br>146 = FC-Infector木马<br>161 = SNMP服务<br>162 = SNMP查询<br>445 = SMB(交换服务器消息块)<br>500 = VPN密钥协商<br>666 = Bla木马<br>999 = DeepThroat木马<br>1027 = 灰鸽子<br>1042 = Bla木马<br>1561 = MuSka52木马<br>1900 = UPNP(通用即插即用)<br>2140 = Deep Throat木马<br>2989 = Rat木马<br>3129 = Masters Paradise木马<br>3150 = DeepThroat木马<br>3700 = Portal of Doom木马<br>4000 = QQ聊天<br>4006 = 灰鸽子<br>5168 = 高波蠕虫<br>6670 = DeepThroat木马<br>6771 = DeepThroat木马<br>6970 = ReadAudio音频数据<br>8000 = QQ聊天<br>8099 = VC远程调试<br>8225 = 灰鸽子<br>9872 = Portal of Doom木马<br>9873 = Portal of Doom木马<br>9874 = Portal of Doom木马<br>9875 = Portal of Doom木马<br>10067 = Portal of Doom木马<br>10167 = Portal of Doom木马<br>22226 = 高波蠕虫<br>26274 = Delta Source木马<br>31337 = Back-Orifice木马<br>31785 = Hack Attack木马<br>31787 = Hack Attack木马<br>31788 = Hack-A-Tack木马<br>31789 = Hack Attack木马<br>31791 = Hack Attack木马<br>31792 = Hack-A-Tack木马<br>34555 = Trin00 DDoS木马<br>40422 = Master-Paradise木马<br>40423 = Master-Paradise木马<br>40425 = Master-Paradise木马<br>40426 = Master-Paradise木马<br>47262 = Delta Source木马<br>54320 = Back-Orifice木马<br>54321 = Back-Orifice木马<br>60000 = DeepThroat木马</p>
+</article><!-- lincense--><div class="license-wrapper"><p> <span>Author:  </span><a href="https://blog.xssor.net">xssor</a></p><p> <span>Link:  </span><a href="https://blog.xssor.net/2017/04/24/IP段和常见端口/">https://blog.xssor.net/2017/04/24/IP段和常见端口/</a></p><p> <span>Copyright:  </span><span>ansbius</span></p></div><div class="post-paginator"><a class="prevSlogan" href="/2017/04/25/win10与虚拟机中的linux共享文件方法/" title="win10与虚拟机中的linux共享文件方法"><span>< PreviousPost</span><br><span class="prevTitle">win10与虚拟机中的linux共享文件方法</span></a><a class="nextSlogan" href="/2017/04/23/SMS Sniffer/" title="SMS Sniffer"><span>NextPost ></span><br><span class="nextTitle">SMS Sniffer</span></a><div class="clear"></div></div><div id="comment"></div></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span></div></footer><!-- catelog--><div class="toc-wrapper" style="top: 70vh;"><div class="toc-catalog"><i class="fa fa-list"> </i><span>CATALOG</span></div></div><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i></body></html>
